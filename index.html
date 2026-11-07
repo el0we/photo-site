@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Elliot Lowe Photography</title>
+  <meta name="description" content="Black and white landscapes, portraits, and street scenes from wherever the road leads.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top">Elliot Lowe</a>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" style="--img: url('photos/IMG_3001.jpg')">
+      <div class="hero-inner">
+        <h1>Light &amp; Shadow</h1>
+        <p>A curated mix of landscapes, portraits, and street scenes from wherever the road leads.</p>
+        <a class="button" href="#gallery">View Gallery</a>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <div class="about-text">
+        <h2>Black &amp; white focus</h2>
+        <p>Landscapes, portraits, and street moments, captured around the world, with intention.</p>
+      </div>
+      <div class="about-photo ph" style="--img: url('photos/IMG_2843.jpg')" role="img" aria-label="Featured photograph"></div>
+    </section>
+
+    <section id="gallery" class="gallery">
+      <h2>Gallery</h2>
+      <div id="grid" class="grid" aria-live="polite"></div>
+    </section>
+
+    <section id="contact" class="contact">
+      <h2>Get in touch</h2>
+      <p>Questions, prints, or just want to say hello? Send a note.</p>
+      <a class="button dark" href="mailto:photos@elowe.co">photos@elowe.co</a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a href="https://instagram.com/elliot_lowe" rel="noopener">Instagram</a>
+    <span>&copy; 2026 elowe.co. All rights reserved.</span>
+  </footer>
+
+  <div id="lightbox" class="lightbox" hidden>
+    <button id="lb-close" aria-label="Close">&times;</button>
+    <img id="lb-img" alt="">
+    <p id="lb-cap"></p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
