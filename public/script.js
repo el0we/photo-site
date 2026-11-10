@@ -156,3 +156,13 @@
     .then(function (res) { items = res.filter(Boolean); build(); })
     .catch(function () { build(); });
 })();
+
+// Contact address: assembled here so it is not sitting in the page source for scrapers.
+(function () {
+  var a = document.getElementById('mail');
+  if (!a) return;
+  var addr = ['photos', 'elowe.co'].join(String.fromCharCode(64));
+  a.href = 'mailto:' + addr;
+  a.textContent = addr;
+  a.hidden = false;
+})();
