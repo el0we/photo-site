@@ -47,6 +47,7 @@ a { color: inherit; }
   opacity: 0; transition: opacity .5s ease;
 }
 .stage img.in { opacity: 1; }
+.has-thumbs .stage img { max-height: calc(100svh - var(--bar) - 9.5rem); }
 .zone { position: absolute; top: 0; bottom: 0; width: 50%; background: none; border: 0; padding: 0; cursor: pointer; }
 .zone--prev { left: 0; cursor: w-resize; }
 .zone--next { right: 0; cursor: e-resize; }

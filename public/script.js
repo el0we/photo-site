@@ -53,7 +53,7 @@
       b.addEventListener('click', function () { show(k); });
       thumbs.appendChild(b);
     });
-    if (items.length > 1) { prev.hidden = next.hidden = thumbs.hidden = false; }
+    if (items.length > 1) { prev.hidden = next.hidden = thumbs.hidden = false; document.getElementById('photos').classList.add('has-thumbs'); }
     show(0);
   }
 
