@@ -40,8 +40,12 @@
         <button id="next" class="zone zone--next" aria-label="Next photograph" hidden></button>
       </div>
       <div class="caption">
-        <span id="title"></span>
+        <span class="cap-left">
+          <span id="title"></span>
+          <button id="info-btn" class="info-btn" type="button" aria-label="Photo details" aria-expanded="false" aria-controls="info" hidden>i</button>
+        </span>
         <span id="count"></span>
+        <dl id="info" class="info" hidden></dl>
       </div>
       <div id="thumbs" class="thumbs" hidden></div>
       <p id="empty" class="empty" hidden>Photographs coming soon.</p>

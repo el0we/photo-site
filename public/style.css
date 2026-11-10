@@ -57,6 +57,25 @@ a { color: inherit; }
   display: flex; justify-content: space-between; gap: 1rem;
   padding-top: 1rem; font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted);
 }
+.caption { position: relative; align-items: center; }
+.cap-left { display: flex; align-items: center; gap: .75rem; }
+.info-btn {
+  width: 1.4rem; height: 1.4rem; padding: 0; border-radius: 50%;
+  border: 1px solid var(--muted); background: none; color: var(--muted); cursor: pointer;
+  font: italic 500 .95rem/1 "Cormorant Garamond", Georgia, serif; text-transform: none;
+  transition: color .2s, border-color .2s;
+}
+.info-btn:hover, .info-btn[aria-expanded="true"] { color: var(--ink); border-color: var(--ink); }
+.info-btn[hidden], .info[hidden] { display: none; }
+.info {
+  position: absolute; left: 0; bottom: calc(100% + .5rem); z-index: 3; margin: 0;
+  display: grid; grid-template-columns: auto 1fr; gap: .4rem 1.5rem; align-items: baseline;
+  padding: 1rem 1.25rem; max-width: 100%;
+  background: rgba(13,13,13,.92); border: 1px solid var(--line);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+}
+.info dt { font-size: .65rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+.info dd { margin: 0; font-size: .8rem; letter-spacing: .04em; text-transform: none; color: var(--ink); }
 .thumbs { display: flex; gap: .5rem; justify-content: center; flex-wrap: wrap; padding-top: 1rem; }
 .thumbs[hidden], .empty[hidden] { display: none; }
 .thumbs button { padding: 0; border: 0; background: none; cursor: pointer; opacity: .4; transition: opacity .2s; }

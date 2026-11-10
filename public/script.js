@@ -8,6 +8,8 @@
   var prev = document.getElementById('prev');
   var next = document.getElementById('next');
   var empty = document.getElementById('empty');
+  var infoBtn = document.getElementById('info-btn');
+  var info = document.getElementById('info');
   var items = [];
   var cur = 0;
 
@@ -20,6 +22,27 @@
     });
   }
 
+  // Camera details: shown only for photos that have an "info" object in photos.json.
+  function setInfo(open) {
+    infoBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    info.hidden = !open;
+  }
+
+  function renderInfo(p) {
+    info.textContent = '';
+    var keys = p.info ? Object.keys(p.info) : [];
+    keys.forEach(function (k) {
+      var dt = document.createElement('dt');
+      var dd = document.createElement('dd');
+      dt.textContent = k;
+      dd.textContent = p.info[k];
+      info.appendChild(dt);
+      info.appendChild(dd);
+    });
+    infoBtn.hidden = !keys.length;
+    if (!keys.length) setInfo(false);
+  }
+
   function show(i) {
     cur = (i + items.length) % items.length;
     var p = items[cur];
@@ -28,6 +51,7 @@
     main.src = 'photos/' + p.file;
     main.alt = p.alt || p.title;
     title.textContent = p.title;
+    renderInfo(p);
     count.textContent = items.length > 1 ? (cur + 1) + ' / ' + items.length : '';
     Array.prototype.forEach.call(thumbs.children, function (b, k) {
       b.classList.toggle('on', k === cur);
@@ -57,6 +81,8 @@
     show(0);
   }
 
+  infoBtn.addEventListener('click', function () { setInfo(info.hidden); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setInfo(false); });
   prev.addEventListener('click', function () { show(cur - 1); });
   next.addEventListener('click', function () { show(cur + 1); });
   document.addEventListener('keydown', function (e) {
