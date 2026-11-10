@@ -103,6 +103,7 @@
     items.forEach(function (p, k) {
       var li = document.createElement('li');
       li.style.setProperty('--ar', p.ar);
+      if (p.ar < 1) li.className = 'tall';
       var b = document.createElement('button');
       b.type = 'button';
       b.setAttribute('aria-label', 'View ' + p.title);

@@ -39,14 +39,19 @@ a { color: inherit; }
 }
 .bar nav a:hover { color: var(--ink); }
 
-.gallery { min-height: 100svh; padding: calc(var(--bar) + 1rem) var(--pad) 3rem; }
+.gallery { min-height: 100svh; padding: calc(var(--bar) + 3rem) var(--pad) 7rem; }
 .grid {
-  --row: clamp(9rem, 17vw, 14rem);
-  list-style: none; margin: 0; padding: 0;
-  display: flex; flex-wrap: wrap; gap: .5rem;
+  --row: clamp(10rem, 19vw, 16rem);
+  list-style: none; margin: 0 auto; padding: 0; max-width: 84rem;
+  display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
+  gap: clamp(2.5rem, 6vw, 5.5rem) clamp(2rem, 5vw, 4.5rem);
 }
-.grid::after { content: ""; flex: 10000 1 0; }
-.grid li { flex: var(--ar) 1 calc(var(--ar) * var(--row)); position: relative; min-width: 0; }
+/* Varied scale gives the rows a hung-on-a-wall rhythm instead of a uniform mosaic. */
+.grid li { --s: 1; flex: 0 0 calc(var(--ar) * var(--row) * var(--s)); position: relative; min-width: 0; max-width: 100%; }
+.grid li:nth-child(3n+1) { --s: 1.2; }
+.grid li:nth-child(3n+2) { --s: .85; }
+.grid li:nth-child(4n+3) { --s: 1.05; }
+.grid li.tall { --s: 1.45; }
 .grid button {
   position: relative; display: block; width: 100%; padding: 0; border: 0;
   background: #161616; cursor: zoom-in; overflow: hidden;
@@ -142,7 +147,9 @@ a { color: inherit; }
 @media (max-width: 640px) {
   :root { --bar: 3.5rem; }
   .bar nav a:first-child { display: none; }
-  .grid { --row: 9rem; gap: .35rem; }
+  .gallery { padding-top: calc(var(--bar) + 1.5rem); padding-bottom: 4rem; }
+  .grid { gap: 2.75rem; }
+  .grid li, .grid li:nth-child(n) { flex: 0 0 100%; }
   .lightbox { padding-top: 3rem; }
   .stage img { max-height: calc(100svh - 9rem); }
 }
