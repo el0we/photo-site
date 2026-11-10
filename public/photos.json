@@ -1,7 +1,8 @@
 [
   {"file": "2025_11_10-England49.jpg", "title": "The Tate Modern", "alt": "A lone figure walking through the concrete Turbine Hall undercroft at the Tate Modern"},
   {"file": "IMG_3143.jpg", "title": "Geese in Snow", "alt": "A loose line of Canada geese walking across a snowy field, bare cottonwoods and pines behind, foothills in the distance"},
-  {"file": "red-rocks-snow-runner.jpg", "title": "Snow Runner at Red Rocks", "alt": "A lone runner climbing the snow-covered rows of Red Rocks Amphitheatre beneath a towering slanted sandstone monolith"},
+  {"file": "red-rocks-snow-runner.jpg", "title": "Snow Runner at Red Rocks", "alt": "A lone runner climbing the snow-covered rows of Red Rocks Amphitheatre beneath a towering slanted sandstone monolith",
+   "info": {"Camera": "Canon EOS R8", "Lens": "RF16-28mm F2.8 IS STM", "Focal length": "16 mm", "Aperture": "f/16", "Shutter": "1/80 s", "ISO": "400", "Date": "Nov 29, 2025"}},
   {"file": "denver-union-station.jpg", "title": "Denver Union Station", "alt": "The arching white canopy over the train platforms at Denver Union Station, framing apartment towers and an open sky"},
   {"file": "sunrise-over-main-street.jpg", "title": "Sunrise Over Main Street", "alt": "A blazing orange and magenta sunrise sky over an empty Main Street, glowing street lamps with holiday wreaths lining the road and brick storefronts on the right",
    "info": {"Camera": "Canon EOS R8", "Lens": "RF16-28mm F2.8 IS STM", "Focal length": "28 mm", "Aperture": "f/22", "Shutter": "1/80 s", "ISO": "10000", "Date": "Jan 13, 2026"}},
