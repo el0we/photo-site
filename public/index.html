@@ -33,21 +33,8 @@
   </header>
 
   <main id="top">
-    <section id="photos" class="viewer" aria-label="Photographs">
-      <div class="stage">
-        <img id="main" alt="">
-        <button id="prev" class="zone zone--prev" aria-label="Previous photograph" hidden></button>
-        <button id="next" class="zone zone--next" aria-label="Next photograph" hidden></button>
-      </div>
-      <div class="caption">
-        <span class="cap-left">
-          <span id="title"></span>
-          <button id="info-btn" class="info-btn" type="button" aria-label="Photo details" aria-expanded="false" aria-controls="info" hidden>i</button>
-        </span>
-        <span id="count"></span>
-        <dl id="info" class="info" hidden></dl>
-      </div>
-      <div id="thumbs" class="thumbs" hidden></div>
+    <section id="photos" class="gallery" aria-label="Photographs">
+      <ul id="grid" class="grid"></ul>
       <p id="empty" class="empty" hidden>Photographs coming soon.</p>
     </section>
 
@@ -67,6 +54,23 @@
     <a href="https://instagram.com/elliot_lowe" rel="noopener">Instagram</a>
     <span>&copy; 2026 elowe.co. All rights reserved.</span>
   </footer>
+
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Photograph" hidden>
+    <button id="close" class="lb-close" type="button" aria-label="Close photograph">&times;</button>
+    <div class="stage">
+      <img id="main" alt="">
+      <button id="prev" class="zone zone--prev" type="button" aria-label="Previous photograph"></button>
+      <button id="next" class="zone zone--next" type="button" aria-label="Next photograph"></button>
+    </div>
+    <div class="caption">
+      <span class="cap-left">
+        <span id="title"></span>
+        <button id="info-btn" class="info-btn" type="button" aria-label="Photo details" aria-expanded="false" aria-controls="info" hidden>i</button>
+      </span>
+      <span id="count"></span>
+      <dl id="info" class="info" hidden></dl>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>

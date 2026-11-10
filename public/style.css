@@ -39,25 +39,64 @@ a { color: inherit; }
 }
 .bar nav a:hover { color: var(--ink); }
 
-.viewer { min-height: 100svh; display: flex; flex-direction: column; padding: var(--bar) var(--pad) 1.25rem; }
+.gallery { min-height: 100svh; padding: calc(var(--bar) + 1rem) var(--pad) 3rem; }
+.grid {
+  --row: clamp(9rem, 17vw, 14rem);
+  list-style: none; margin: 0; padding: 0;
+  display: flex; flex-wrap: wrap; gap: .5rem;
+}
+.grid::after { content: ""; flex: 10000 1 0; }
+.grid li { flex: var(--ar) 1 calc(var(--ar) * var(--row)); position: relative; min-width: 0; }
+.grid button {
+  position: relative; display: block; width: 100%; padding: 0; border: 0;
+  background: #161616; cursor: zoom-in; overflow: hidden;
+}
+.grid img {
+  display: block; width: 100%; aspect-ratio: var(--ar); object-fit: cover;
+  opacity: 0; transition: opacity .5s ease, transform .6s ease;
+}
+.grid img.in { opacity: 1; }
+.grid .t {
+  position: absolute; inset: auto 0 0 0; padding: 2rem .8rem .65rem; text-align: left;
+  font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink);
+  background: linear-gradient(to top, rgba(0,0,0,.7), rgba(0,0,0,0));
+  opacity: 0; transition: opacity .25s;
+}
+@media (hover: hover) {
+  .grid button:hover img { transform: scale(1.025); }
+  .grid button:hover .t { opacity: 1; }
+}
+.grid button:focus-visible .t { opacity: 1; }
+.empty { text-align: center; color: var(--muted); padding: 6rem 0; }
+.empty[hidden] { display: none; }
+
+.lightbox {
+  position: fixed; inset: 0; z-index: 10; display: flex; flex-direction: column;
+  padding: 3.25rem var(--pad) 1rem; background: var(--bg);
+}
+.lightbox[hidden] { display: none; }
+.lb-close {
+  position: absolute; top: .6rem; right: calc(var(--pad) - .5rem); z-index: 4;
+  width: 2.5rem; height: 2.5rem; padding: 0; border: 0; background: none; cursor: pointer;
+  color: var(--muted); font: 300 2rem/1 "Inter", system-ui, sans-serif; transition: color .2s;
+}
+.lb-close:hover { color: var(--ink); }
 .stage { position: relative; flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; }
 .stage img {
-  display: block; max-width: 100%; max-height: calc(100svh - var(--bar) - 5.5rem);
+  display: block; max-width: 100%; max-height: calc(100svh - 8rem);
   width: auto; height: auto; object-fit: contain;
-  opacity: 0; transition: opacity .5s ease;
+  opacity: 0; transition: opacity .4s ease;
 }
 .stage img.in { opacity: 1; }
-.has-thumbs .stage img { max-height: calc(100svh - var(--bar) - 9.5rem); }
 .zone { position: absolute; top: 0; bottom: 0; width: 50%; background: none; border: 0; padding: 0; cursor: pointer; }
 .zone--prev { left: 0; cursor: w-resize; }
 .zone--next { right: 0; cursor: e-resize; }
 .zone[hidden] { display: none; }
 
 .caption {
-  display: flex; justify-content: space-between; gap: 1rem;
+  position: relative; display: flex; justify-content: space-between; align-items: center; gap: 1rem;
   padding-top: 1rem; font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted);
 }
-.caption { position: relative; align-items: center; }
 .cap-left { display: flex; align-items: center; gap: .75rem; }
 .info-btn {
   width: 1.4rem; height: 1.4rem; padding: 0; border-radius: 50%;
@@ -76,12 +115,6 @@ a { color: inherit; }
 }
 .info dt { font-size: .65rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
 .info dd { margin: 0; font-size: .8rem; letter-spacing: .04em; text-transform: none; color: var(--ink); }
-.thumbs { display: flex; gap: .5rem; justify-content: center; flex-wrap: wrap; padding-top: 1rem; }
-.thumbs[hidden], .empty[hidden] { display: none; }
-.thumbs button { padding: 0; border: 0; background: none; cursor: pointer; opacity: .4; transition: opacity .2s; }
-.thumbs button.on, .thumbs button:hover { opacity: 1; }
-.thumbs img { display: block; width: 72px; height: 48px; object-fit: cover; }
-.empty { text-align: center; color: var(--muted); padding: 6rem 0; }
 
 .panel {
   max-width: 44rem; margin: 0 auto; padding: 7rem var(--pad) 2rem;
@@ -109,11 +142,11 @@ a { color: inherit; }
 @media (max-width: 640px) {
   :root { --bar: 3.5rem; }
   .bar nav a:first-child { display: none; }
-  .viewer { min-height: 0; padding-top: calc(var(--bar) + 1rem); }
-  .stage { flex: none; }
-  .stage img { max-height: 70svh; }
+  .grid { --row: 9rem; gap: .35rem; }
+  .lightbox { padding-top: 3rem; }
+  .stage img { max-height: calc(100svh - 9rem); }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .stage img { transition: none; }
+  .stage img, .grid img { transition: none; }
 }
