@@ -8,6 +8,9 @@ Plain static site, no build step. Everything published lives in `public/`.
 - To add a photo: drop the file in `public/photos/`, run `python3 tools/make_thumbs.py`
   (makes the small grid copy in `public/photos/thumbs/`), and add an entry to
   `public/photos.json`. The order in that file is the grid and viewer order.
+  An optional `"tags"` list (e.g. `["Street", "Architecture"]`) puts the photo under those
+  filters at the top of the grid; a photo can have more than one. Filter buttons appear
+  automatically for every tag in use (Street, Landscape, Architecture are listed first).
   An optional `"info"` object (Camera, Lens, Focal length, Aperture, Shutter, ISO, Date)
   turns on the info button for that photo.
 - If you replace a photo, re-run `python3 tools/make_thumbs.py --force`.

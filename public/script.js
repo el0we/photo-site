@@ -13,7 +13,10 @@
   var closeBtn = document.getElementById('close');
   var infoBtn = document.getElementById('info-btn');
   var info = document.getElementById('info');
-  var items = [];
+  var filtersEl = document.getElementById('filters');
+  var items = [];   // every photo that loaded
+  var view = [];    // the photos currently shown (after filtering)
+  var TAG_ORDER = ['Street', 'Landscape', 'Architecture'];
   var cur = 0;
   var opener = null;
 
@@ -60,24 +63,24 @@
 
   // ----- full-screen viewer -----
   function show(i) {
-    cur = (i + items.length) % items.length;
-    var p = items[cur];
+    cur = (i + view.length) % view.length;
+    var p = view[cur];
     main.classList.remove('in');
     main.onload = function () { main.classList.add('in'); };
     main.src = 'photos/' + p.file;
     main.alt = p.alt || p.title;
     title.textContent = p.title;
     renderInfo(p);
-    count.textContent = items.length > 1 ? (cur + 1) + ' / ' + items.length : '';
+    count.textContent = view.length > 1 ? (cur + 1) + ' / ' + view.length : '';
     if (main.complete && main.naturalWidth) main.classList.add('in');
     [cur + 1, cur - 1].forEach(function (k) {   // warm the neighbours
-      new Image().src = 'photos/' + items[(k + items.length) % items.length].file;
+      new Image().src = 'photos/' + view[(k + view.length) % view.length].file;
     });
   }
 
   function openBox(i, from) {
     opener = from || null;
-    prev.hidden = next.hidden = items.length < 2;
+    prev.hidden = next.hidden = view.length < 2;
     box.hidden = false;
     document.body.style.overflow = 'hidden';
     show(i);
@@ -93,14 +96,13 @@
     if (opener) opener.focus();
   }
 
-  // ----- grid -----
-  function build() {
-    if (!items.length) {
-      grid.hidden = true;
-      empty.hidden = false;
-      return;
-    }
-    items.forEach(function (p, k) {
+  // ----- grid + filters -----
+  function render(tag) {
+    view = tag === 'All' ? items.slice() : items.filter(function (p) {
+      return p.tags && p.tags.indexOf(tag) > -1;
+    });
+    grid.textContent = '';
+    view.forEach(function (p, k) {
       var li = document.createElement('li');
       li.style.setProperty('--ar', p.ar);
       if (p.ar < 1) li.className = 'tall';
@@ -121,6 +123,48 @@
       li.appendChild(b);
       grid.appendChild(li);
     });
+    Array.prototype.forEach.call(filtersEl.children, function (btn) {
+      btn.setAttribute('aria-pressed', btn.textContent === tag ? 'true' : 'false');
+    });
+    try {
+      var u = new URL(location.href);
+      if (tag === 'All') u.searchParams.delete('c'); else u.searchParams.set('c', tag.toLowerCase());
+      history.replaceState(null, '', u);
+    } catch (e) {}
+  }
+
+  function buildFilters() {
+    var seen = {};
+    items.forEach(function (p) { (p.tags || []).forEach(function (t) { seen[t] = true; }); });
+    var tags = Object.keys(seen).sort(function (a, b) {
+      var ia = TAG_ORDER.indexOf(a), ib = TAG_ORDER.indexOf(b);
+      return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib) || a.localeCompare(b);
+    });
+    if (!tags.length) return;
+    ['All'].concat(tags).forEach(function (t) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.textContent = t;
+      b.setAttribute('aria-pressed', 'false');
+      b.addEventListener('click', function () { render(t); });
+      filtersEl.appendChild(b);
+    });
+    filtersEl.hidden = false;
+  }
+
+  function build() {
+    if (!items.length) {
+      grid.hidden = true;
+      empty.hidden = false;
+      return;
+    }
+    buildFilters();
+    var want = (new URLSearchParams(location.search).get('c') || '').toLowerCase();
+    var start = 'All';
+    Array.prototype.forEach.call(filtersEl.children, function (btn) {
+      if (btn.textContent.toLowerCase() === want) start = btn.textContent;
+    });
+    render(start);
   }
 
   closeBtn.addEventListener('click', closeBox);
@@ -131,8 +175,8 @@
   document.addEventListener('keydown', function (e) {
     if (box.hidden) return;
     if (e.key === 'Escape') { if (!info.hidden) setInfo(false); else closeBox(); }
-    else if (e.key === 'ArrowLeft' && items.length > 1) show(cur - 1);
-    else if (e.key === 'ArrowRight' && items.length > 1) show(cur + 1);
+    else if (e.key === 'ArrowLeft' && view.length > 1) show(cur - 1);
+    else if (e.key === 'ArrowRight' && view.length > 1) show(cur + 1);
     else if (e.key === 'Tab') {                    // keep focus inside the viewer
       var f = Array.prototype.filter.call(box.querySelectorAll('button'), function (el) { return !el.hidden; });
       var first = f[0], last = f[f.length - 1];
@@ -144,7 +188,7 @@
   var x0 = null;
   main.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
   main.addEventListener('touchend', function (e) {
-    if (x0 === null || items.length < 2) return;
+    if (x0 === null || view.length < 2) return;
     var dx = e.changedTouches[0].clientX - x0;
     if (Math.abs(dx) > 40) show(cur + (dx < 0 ? 1 : -1));
     x0 = null;
