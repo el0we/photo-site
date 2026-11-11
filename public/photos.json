@@ -1,5 +1,5 @@
 [
-  {"file": "progress-in-architecture-london.jpg", "title": "Progress in Architecture - London, England", "alt": "The glass spire of The Shard rising behind the stone turrets and battlements of the Tower of London, under heavy clouds with a patch of blue sky and autumn trees", "tags": ["Architecture"],
+  {"file": "progress-in-architecture-london.jpg", "title": "Progress in Architecture - Tower of London", "alt": "The glass spire of The Shard rising behind the stone turrets and battlements of the Tower of London, under heavy clouds with a patch of blue sky and autumn trees", "tags": ["Architecture"],
    "info": {"Camera": "Canon EOS R8", "Lens": "RF24-240mm F4-6.3 IS USM", "Focal length": "42 mm", "Aperture": "f/13", "Shutter": "1/80 s", "ISO": "320", "Date": "Nov 8, 2025"}},
   {"file": "2025_11_10-England49.jpg", "title": "The Tate Modern", "alt": "A lone figure walking through the concrete Turbine Hall undercroft at the Tate Modern", "tags": ["Architecture", "Street"],
    "info": {"Camera": "Canon EOS R8", "Lens": "RF16-28mm F2.8 IS STM", "Focal length": "25 mm", "Aperture": "f/5.6", "Shutter": "1/80 s", "ISO": "20000", "Date": "Nov 3, 2025"}},
@@ -32,11 +32,5 @@
   {"file": "wolf-creek-pass-co.jpg", "title": "Wolf Creek Pass - CO", "alt": "Morning mist drifting over a blue mountain lake, with dark green spruce on one shore, a beetle-killed forested hillside beyond, and golden grass on the bank at right", "tags": ["Landscape"],
    "info": {"Camera": "Canon EOS R8", "Lens": "RF24-240mm F4-6.3 IS USM", "Focal length": "100 mm", "Aperture": "f/32", "Shutter": "1/30 s", "ISO": "12800", "Date": "Aug 22, 2026"}},
   {"file": "plumes-at-dusk.jpg", "title": "Plumes at Dusk", "alt": "Marching band members in silhouette on a field at dusk, tall white plumes on their shakos glowing against stadium lights, mountains and trees on the horizon, in black and white", "tags": ["Street"],
-   "info": {"Camera": "Canon EOS R8", "Lens": "RF24-240mm F4-6.3 IS USM", "Focal length": "50 mm", "Aperture": "f/5", "Shutter": "1/8 s", "ISO": "4000", "Date": "Oct 11, 2025"}},
-  {"file": "2025_11_10-England286.jpg", "title": "London Street 1", "alt": "London street scene"},
-  {"file": "IMG_3085.jpg", "title": "Denver Rescue", "alt": "Denver Rescue"},
-  {"file": "IMG_3014.jpg", "title": "IMG 3014", "alt": ""},
-  {"file": "IMG_3082.jpg", "title": "IMG 3082", "alt": ""},
-  {"file": "IMG_3001.jpg", "title": "IMG 3001", "alt": ""},
-  {"file": "IMG_2843.jpg", "title": "IMG 2843", "alt": ""}
+   "info": {"Camera": "Canon EOS R8", "Lens": "RF24-240mm F4-6.3 IS USM", "Focal length": "50 mm", "Aperture": "f/5", "Shutter": "1/8 s", "ISO": "4000", "Date": "Oct 11, 2025"}}
 ]
